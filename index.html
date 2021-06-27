@@ -42,28 +42,20 @@
         
 
         <div class="form-group">
-            <select class="form-control bfh-currencies" id="exampleFormControlSelect1">
-              <option></option>
+            <select class="form-control form-select bfh-currencies" id="selectCurrencies">
+             
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <select class="form-control bfh-currencies" id="Currencie">
              
             </select>
           </div>
 
+          
+
     </div>
     
-    <script>
-        $(document).ready(function()
-        {
-            $("select").click(function(){
-                $.getJSON("Data/AllCurrencies.json", function(data){
-                    $.each(data, function(key, value){
-                        $("select").append("<option>"+value.Currencies+"</option>");
-                    })
-                })
-
-            });
-        });
-
-    </script>
-
 </body>
 </html>

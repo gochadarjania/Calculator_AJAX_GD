@@ -146,3 +146,79 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
+
+$(document).ready(function()
+{
+    
+    
+    var text;
+   
+    $("#selectCurrencies").click(function(){     
+   
+        $.getJSON("Data/AllCurrencies.json", function(data){            
+
+            $("#selectCurrencies").html("");
+
+            $.each(data, function(key, value){
+                $("#selectCurrencies").append("<option value="+value.Currencies+ ">"+value.Currencies+"</option>");
+               
+            }) 
+        })
+
+
+    });
+
+    $('#selectCurrencies').change(function () {
+        var id = $(this).val();
+        text = $('option:selected', this).text(); 
+        alert(text)
+    });
+    
+
+    var date = new Date(); 
+    var startData = date.setDate(date.getDate()-7); 
+
+    $("#Currencie").click(function(){
+               
+
+           $.getJSON("Data/CurrencieTime.json", function(data){
+            $("#Currencie").html("");
+            $.each(data, function(key, value){
+
+                var dateValue = new Date(); 
+                var dateValue1 = new Date(""+value.Time.toString()+""); 
+                
+                
+                if (parseInt(date.getDate()) < parseInt(dateValue1.getDate()) && parseInt(dateValue1.getDate()) <= parseInt(dateValue.getDate())) {
+
+                    switch (text.toString()) {
+                        case "USD":
+                            $("#Currencie").append("<option id="+value.Currencies+">"+value.Currencies.USD +"</option>");
+                      
+                            break;
+        
+                        case "AED":
+                            $("#Currencie").append("<option id="+value.Currencies+">"+value.Currencies.AED +"</option>");
+                       
+                             break;
+        
+                        case "EUR":
+                            $("#Currencie").append("<option id="+value.Currencies+">"+value.Currencies.EUR +"</option>");
+                      
+                             break;
+                       
+                        default:
+                           break;
+                       } 
+
+
+                        
+                    }
+                    
+            })
+        })
+    });
+});
+
+
